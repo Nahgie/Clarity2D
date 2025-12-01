@@ -1,0 +1,4 @@
+# Assets 폴더 내 데이터가 필요하면 주석 처리할 것
+/.vs/
+/Build/
+/Assets/

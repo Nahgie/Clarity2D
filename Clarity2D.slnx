@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Clarity2D/Clarity2D.vcxproj" Id="063f999a-40a4-4a81-b761-d44daea7395c">
+    <Build Solution="*|x86" Project="false" />
+  </Project>
+</Solution>
