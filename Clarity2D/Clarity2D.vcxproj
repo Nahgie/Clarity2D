@@ -99,7 +99,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Engine\game.ixx" />
+    <ClCompile Include="Engine\graphics.ixx" />
+    <ClCompile Include="Engine\singleton.ixx" />
+    <ClCompile Include="Engine\types.ixx" />
+    <ClCompile Include="Engine\main.cpp" />
+    <ClCompile Include="Engine\win32.ixx" />
+    <ClCompile Include="Sources\launch_options.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
