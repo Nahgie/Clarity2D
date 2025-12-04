@@ -56,7 +56,7 @@ export namespace c2d
     using wstring = std::wstring;
     using wstring_view = std::wstring_view;
 
-    export namespace options
+    export namespace engine_start_options
     {
         using TEXT = LPCWSTR;
         using SCREEN_WIDTH = uint16;
@@ -78,5 +78,17 @@ export namespace c2d
         inline constexpr double epsilon = 0.000001;
         inline constexpr double deg2rad = (pi / 180.0);
         inline constexpr double rad2deg = (180.0 / pi);
+    }
+
+    export namespace rendering
+    {
+        enum class eRenderLimitMode : UINT8     //렌더링 싱크 조절법을 정의
+        {
+            UNLIMIT = (0x00),
+            V_SYNC = (0x01),
+            SINGLE_BUFFER = (0x02),
+            DOUBLE_BUFFER = (0x03),
+            TRIPLE_BUFFER = (0x04)
+        };
     }
 }

@@ -21,19 +21,28 @@
     <ClCompile Include="Engine\types.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\graphics.ixx">
+    <ClCompile Include="Engine\GraphicsManager\graphics.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\win32.ixx">
+    <ClCompile Include="Engine\Win32Manager\win32.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Engine\singleton.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\launch_options.ixx">
+    <ClCompile Include="Sources\options.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\game.ixx">
+    <ClCompile Include="Engine\GameManager\game.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GameManager\game.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GraphicsManager\graphics.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Win32Manager\win32.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

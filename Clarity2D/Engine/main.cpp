@@ -1,5 +1,5 @@
 ﻿import c2d.engine.win32;
-import c2d.launch_options;
+import c2d.launch.options;
 
 import <Windows.h>;
 
@@ -13,6 +13,6 @@ int WINAPI wWinMain
     _In_ int nShowCmd
 )
 {
-    Win32()->Init(nullptr, TITLE, WIDTH, HEIGHT);
+    Win32Inst()->Init(nullptr, TITLE, WIDTH, HEIGHT);
     return 0;
 }
