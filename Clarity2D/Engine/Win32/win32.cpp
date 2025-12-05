@@ -1,8 +1,6 @@
 ﻿module c2d.engine.win32;
 
 import <Windows.h>;
-import <cassert>;
-
 import c2d.engine.game;
 
 using namespace c2d;
@@ -11,23 +9,22 @@ void Win32Manager::SetupWindow()
 {
     WNDCLASSEXW wc{};
     {
-        wc.cbSize = sizeof(WNDCLASSEXW);
-        wc.style = CS_HREDRAW | CS_VREDRAW;
-        wc.cbClsExtra = 0;
-        wc.cbWndExtra = 0;
-        wc.lpfnWndProc = WndProc;
-        wc.hInstance = _hInstance;
+        wc.cbSize        = sizeof(WNDCLASSEXW);
+        wc.style         = CS_HREDRAW | CS_VREDRAW;
+        wc.cbClsExtra    = 0;
+        wc.cbWndExtra    = 0;
+        wc.lpfnWndProc   = WndProc;
+        wc.hInstance     = _hInstance;
         wc.lpszClassName = _title.c_str();
     }
 
-    HRESULT hr = RegisterClassExW(&wc);
-    assert(SUCCEEDED(hr));
+    RegisterClassExW(&wc);
 
     //윈도우 사이즈를 계산합니다.
     RECT contentSize{ 0, 0, _width, _height };
     AdjustWindowRectEx(&contentSize, WS_OVERLAPPEDWINDOW, false, WS_EX_APPWINDOW);
 
-    int32 clientWidth = (contentSize.right - contentSize.left);
+    int32 clientWidth  = (contentSize.right - contentSize.left);
     int32 clientHeight = (contentSize.bottom - contentSize.top);
 
     //윈도우 생성
@@ -66,20 +63,18 @@ void Win32Manager::ReleaseWindow()
 void Win32Manager::Init
 (
     HINSTANCE hInstance,
-    wstring_view title,
+    c2wstring_view title,
     int32 width,
     int32 height
 )
 {
     _hInstance = hInstance;
-    _title = title;
-    _width = width;
-    _height = height;
+    _title     = title;
+    _width     = width;
+    _height    = height;
 
     //COM객체를 멀티 쓰레드 환경으로 초기화 합니다.
-    HRESULT hr = CoInitializeEx(nullptr, COINITBASE_MULTITHREADED | COINIT_DISABLE_OLE1DDE);
-    assert(SUCCEEDED(hr));
-
+    CoInitializeEx(nullptr, COINITBASE_MULTITHREADED | COINIT_DISABLE_OLE1DDE);
     SetupWindow();
 
     GameInst()->Init();
@@ -96,19 +91,4 @@ void Win32Manager::Init
     ReleaseWindow();
 
     GameInst()->GameQuit();
-}
-
-HWND Win32Manager::GetWindowHandle() const noexcept
-{
-    return _hWnd;
-}
-
-int32 Win32Manager::GetWidth() const noexcept
-{
-    return _width;
-}
-
-int32 Win32Manager::GetHeight() const noexcept
-{
-    return _height;
 }

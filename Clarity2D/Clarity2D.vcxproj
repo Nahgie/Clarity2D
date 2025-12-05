@@ -57,8 +57,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\DXTK\Inc;$(SolutionDir)Clarity2D\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -84,8 +84,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\DXTK\Inc;$(SolutionDir)Clarity2D\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -101,16 +101,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\GameManager\game.cpp" />
-    <ClCompile Include="Engine\GameManager\game.ixx" />
-    <ClCompile Include="Engine\GraphicsManager\graphics.cpp" />
-    <ClCompile Include="Engine\GraphicsManager\graphics.ixx" />
+    <ClCompile Include="Engine\Game\game.cpp" />
+    <ClCompile Include="Engine\Game\game.ixx" />
+    <ClCompile Include="Engine\Graphics\graphics.cpp" />
+    <ClCompile Include="Engine\Graphics\graphics.ixx" />
+    <ClCompile Include="Engine\Scene\scene.ixx" />
     <ClCompile Include="Engine\singleton.ixx" />
     <ClCompile Include="Engine\types.ixx" />
     <ClCompile Include="Engine\main.cpp" />
-    <ClCompile Include="Engine\Win32Manager\win32.cpp" />
-    <ClCompile Include="Engine\Win32Manager\win32.ixx" />
+    <ClCompile Include="Engine\Win32\win32.cpp" />
+    <ClCompile Include="Engine\Win32\win32.ixx" />
     <ClCompile Include="Sources\options.ixx" />
+    <ClCompile Include="System\GameObject\game_object.ixx" />
+    <ClCompile Include="System\SceneObject\scene_object.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

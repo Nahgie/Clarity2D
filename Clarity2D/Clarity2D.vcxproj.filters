@@ -21,10 +21,10 @@
     <ClCompile Include="Engine\types.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GraphicsManager\graphics.ixx">
+    <ClCompile Include="Engine\Graphics\graphics.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Win32Manager\win32.ixx">
+    <ClCompile Include="Engine\Win32\win32.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Engine\singleton.ixx">
@@ -33,16 +33,25 @@
     <ClCompile Include="Sources\options.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GameManager\game.ixx">
+    <ClCompile Include="Engine\Game\game.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GameManager\game.cpp">
+    <ClCompile Include="Engine\Game\game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GraphicsManager\graphics.cpp">
+    <ClCompile Include="Engine\Graphics\graphics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Win32Manager\win32.cpp">
+    <ClCompile Include="Engine\Win32\win32.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Scene\scene.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="System\SceneObject\scene_object.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GameObject\game_object.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

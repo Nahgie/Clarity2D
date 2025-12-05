@@ -14,25 +14,24 @@ export namespace c2d
     {
     private:
         //chrono의 타이머를 using 문으로 축약
-        using frameRate = std::chrono::duration<uint64, std::ratio<FPS_NUM, FRAME_RATE>>;
+        using frameRate  = std::chrono::duration<uint64, std::ratio<FPS_NUM, FRAME_RATE>>;
         using deltaTimer = std::chrono::duration<float64, std::milli>;
-        using setTimer = std::chrono::high_resolution_clock;
+        using setTimer   = std::chrono::high_resolution_clock;
 
     private:
-        std::atomic_bool _threadState = true;
+        c2thread _asyncUpdateThread;
+        c2thread _gameUpdateThread;
 
-        std::jthread _aSyncUpdateThread;
-        std::jthread _gameUpdateThread;
-
-        afloat64 _deltaTime = 0.0;
+        afloat64 _deltaTime   = 0.0;
+        abool    _threadState = true;
 
     private:
         void ASyncProcess();
         void GameProcess();
 
     public:
-        float32 GetDeltaTime() const noexcept;
-        float64 GetHighDeltaTime() const noexcept;
+        float32 GetDeltaTime()     const noexcept { return static_cast<float32>(_deltaTime); }
+        float64 GetHighDeltaTime() const noexcept { return _deltaTime; }
 
         void Init();
         void GameQuit();
@@ -40,4 +39,4 @@ export namespace c2d
 }
 
 // GameManager 싱글톤 헬퍼 인라인 함수
-export c2d::GameManager* GameInst() noexcept { return c2d::GameManager::GetInstance(); }
+export inline c2d::GameManager* GameInst() noexcept { return c2d::GameManager::GetInstance(); }
