@@ -1,16 +1,16 @@
-﻿export module c2d.engine.graphics;
+﻿/*
+* DirectX API를 사용해 그래픽 처리를 담당합니다.
+* 싱글톤 형태이며 소스(*.cpp) 파일에서 사용할 수 있습니다.
+* 
+* 작성일 : 25.12.07
+* [주의!] 순환 참조 문제가 발생할 수 있으니 모듈(*.ixx)에서 사용 금지
+*/
+module;
+    #include "c2d_dx.h"
+export module c2d.engine.graphics;
 
-import <d3d11_4.h>;
-import <d3dcompiler.h>;
-import <dxgi1_6.h>;
-import <mfmediaengine.h>;
-import <mfapi.h>;
-import <mfidl.h>;
-import <mferror.h>;
-import <cassert>;
-import <Windows.h>;
-import c2d.engine.singleton;
-import c2d.engine.types;
+import c2d.core.singleton;
+import c2d.core.types;
 
 using namespace c2d;
 using namespace c2d::rendering;
@@ -55,4 +55,4 @@ export namespace c2d
 }
 
 // GraphicsManager 싱글톤 헬퍼 인라인 함수
-export inline c2d::GraphicsManager* GFXInst() noexcept { return c2d::GraphicsManager::GetInstance(); }
+export inline c2d::GraphicsManager* Gfx() noexcept { return c2d::GraphicsManager::GetInstance(); }

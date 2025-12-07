@@ -1,6 +1,8 @@
-﻿module c2d.engine.win32;
+﻿module;
+    #include "c2d_dx.h"
+module c2d.engine.win32;
 
-import <Windows.h>;
+import c2d.launch.options;
 import c2d.engine.game;
 
 using namespace c2d;
@@ -77,7 +79,7 @@ void Win32Manager::Init
     CoInitializeEx(nullptr, COINITBASE_MULTITHREADED | COINIT_DISABLE_OLE1DDE);
     SetupWindow();
 
-    GameInst()->Init();
+    Game()->Init();
 
     MSG msg{};
 
@@ -90,5 +92,19 @@ void Win32Manager::Init
     CoUninitialize();
     ReleaseWindow();
 
-    GameInst()->GameQuit();
+    Game()->GameQuit();
+}
+
+// Clarity2D 진입점
+
+int WINAPI wWinMain
+(
+    _In_ HINSTANCE hInstance,
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR lpCmdLine,
+    _In_ int nShowCmd
+)
+{
+    Win32()->Init(nullptr, TITLE, WIDTH, HEIGHT);
+    return 0;
 }

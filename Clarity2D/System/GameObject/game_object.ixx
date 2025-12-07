@@ -1,6 +1,8 @@
-﻿export module c2d.system.game_object;
+﻿module;
+    #include "c2d_dx.h"
+export module c2d.system.game_object;
 
-import c2d.engine.types;
+import c2d.core.types;
 
 export namespace c2d
 {

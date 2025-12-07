@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\types.ixx">
+    <ClCompile Include="Core\Types\types.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Graphics\graphics.ixx">
@@ -27,10 +24,10 @@
     <ClCompile Include="Engine\Win32\win32.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\singleton.ixx">
+    <ClCompile Include="Core\Singleton\singleton.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\options.ixx">
+    <ClCompile Include="Launch\options.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Game\game.ixx">
@@ -54,5 +51,19 @@
     <ClCompile Include="System\GameObject\game_object.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="System\Component\Input\input_component.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Input\input.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PCH\c2d_dx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\PCH\c2d_dx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

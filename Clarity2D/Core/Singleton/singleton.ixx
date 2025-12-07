@@ -1,6 +1,6 @@
-﻿export module c2d.engine.singleton;
-
-import std;
+﻿module;
+    #include "c2d_dx.h"
+export module c2d.core.singleton;
 
 export namespace c2d
 {

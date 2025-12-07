@@ -1,12 +1,12 @@
 ﻿/*
     Clarity2D에서 사용하는 자료형들을 정리합니다.
 */
-export module c2d.engine.types;
+module;
+    #include "c2d_dx.h"
+export module c2d.core.types;
 
-import <wrl/client.h>;
-import <SimpleMath.h>;
-import <cassert>;
-import std;
+// 표준 라이브러리 전역사용 [ using namespace std; 사용금지 ]
+export import std;
 
 export namespace c2d
 {

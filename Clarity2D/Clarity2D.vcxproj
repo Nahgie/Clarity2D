@@ -61,12 +61,14 @@
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\DXTK\Inc;$(SolutionDir)Clarity2D\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\DXTK\Inc;$(SolutionDir)Clarity2D\Core\PCH\;$(SolutionDir)Clarity2D\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <BuildStlModules>true</BuildStlModules>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <TranslateIncludes>false</TranslateIncludes>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>c2d_dx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,11 +89,13 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\DXTK\Inc;$(SolutionDir)Clarity2D\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\DXTK\Inc;$(SolutionDir)Clarity2D\Core\PCH\;$(SolutionDir)Clarity2D\;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BuildStlModules>true</BuildStlModules>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <TranslateIncludes>false</TranslateIncludes>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>c2d_dx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -101,19 +105,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\PCH\c2d_dx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Engine\Game\game.cpp" />
     <ClCompile Include="Engine\Game\game.ixx" />
     <ClCompile Include="Engine\Graphics\graphics.cpp" />
     <ClCompile Include="Engine\Graphics\graphics.ixx" />
+    <ClCompile Include="Engine\Input\input.ixx" />
     <ClCompile Include="Engine\Scene\scene.ixx" />
-    <ClCompile Include="Engine\singleton.ixx" />
-    <ClCompile Include="Engine\types.ixx" />
-    <ClCompile Include="Engine\main.cpp" />
+    <ClCompile Include="Core\Singleton\singleton.ixx" />
+    <ClCompile Include="Core\Types\types.ixx" />
     <ClCompile Include="Engine\Win32\win32.cpp" />
     <ClCompile Include="Engine\Win32\win32.ixx" />
-    <ClCompile Include="Sources\options.ixx" />
+    <ClCompile Include="Launch\options.ixx" />
+    <ClCompile Include="System\Component\Input\input_component.ixx" />
     <ClCompile Include="System\GameObject\game_object.ixx" />
     <ClCompile Include="System\SceneObject\scene_object.ixx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\PCH\c2d_dx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

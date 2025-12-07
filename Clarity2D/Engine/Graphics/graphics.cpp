@@ -1,21 +1,14 @@
-﻿module c2d.engine.graphics;
+﻿module;
+    #include "c2d_dx.h"
+module c2d.engine.graphics;
 
-import <d3d11_4.h>;
-import <d3dcompiler.h>;
-import <dxgi1_6.h>;
-import <mfmediaengine.h>;
-import <mfapi.h>;
-import <mfidl.h>;
-import <mferror.h>;
-import <cassert>;
-import <Windows.h>;
 import c2d.engine.win32;
 
 using namespace c2d;
 
 void GraphicsManager::CreateDevSC()
 {
-    //WinGDI를 사용해 사용자의 모니터 정보를 불러옵니다.
+    // WinGDI를 사용해 사용자의 모니터 정보를 불러옵니다.
     DEVMODEW deviceMode{};
     {
         deviceMode.dmSize = sizeof(DEVMODEW);
@@ -24,8 +17,8 @@ void GraphicsManager::CreateDevSC()
 
     DXGI_SWAP_CHAIN_DESC desc{};
     {
-        desc.BufferDesc.Width                   = Win32Inst()->GetWidth();
-        desc.BufferDesc.Height                  = Win32Inst()->GetHeight();
+        desc.BufferDesc.Width                   = Win32()->GetWidth();
+        desc.BufferDesc.Height                  = Win32()->GetHeight();
         desc.BufferDesc.RefreshRate.Numerator   = deviceMode.dmDisplayFrequency;
         desc.BufferDesc.RefreshRate.Denominator = 1;
         desc.BufferDesc.Format                  = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -35,7 +28,7 @@ void GraphicsManager::CreateDevSC()
         desc.SampleDesc.Quality                 = 0;
         desc.BufferUsage                        = DXGI_USAGE_RENDER_TARGET_OUTPUT;
         desc.BufferCount                        = 1;
-        desc.OutputWindow                       = Win32Inst()->GetWindowHandle();
+        desc.OutputWindow                       = Win32()->GetWindowHandle();
         desc.Windowed                           = true;
         desc.SwapEffect                         = DXGI_SWAP_EFFECT_DISCARD;
     }
@@ -109,8 +102,8 @@ void GraphicsManager::SetViewport()
 {
     _viewport.TopLeftX = 0.f;
     _viewport.TopLeftY = 0.f;
-    _viewport.Width    = static_cast<float32>(Win32Inst()->GetWidth());
-    _viewport.Height   = static_cast<float32>(Win32Inst()->GetHeight());
+    _viewport.Width    = static_cast<float32>(Win32()->GetWidth());
+    _viewport.Height   = static_cast<float32>(Win32()->GetHeight());
     _viewport.MinDepth = 0.f;
     _viewport.MaxDepth = 1.f;
 }

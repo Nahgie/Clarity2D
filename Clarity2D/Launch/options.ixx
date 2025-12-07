@@ -1,9 +1,14 @@
 ﻿/*
-    프로그램의 런칭 옵션을 설정합니다.
+* 프로그램의 런칭 옵션을 설정합니다.
+* 추후 구조가 변경될 수 있습니다.
+*
+* 작성일 : 25.12.07
 */
+module;
+    #include "c2d_dx.h"
 export module c2d.launch.options;
 
-import c2d.engine.types;
+import c2d.core.types;
 
 using namespace c2d::engine_start_options;
 
