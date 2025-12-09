@@ -4,6 +4,7 @@ module c2d.engine.win32;
 
 import c2d.launch.options;
 import c2d.engine.game;
+import c2d.core.messenger;
 
 using namespace c2d;
 
@@ -22,14 +23,14 @@ void Win32Manager::SetupWindow()
 
     RegisterClassExW(&wc);
 
-    //윈도우 사이즈를 계산합니다.
+    // 윈도우 사이즈를 계산합니다.
     RECT contentSize{ 0, 0, _width, _height };
     AdjustWindowRectEx(&contentSize, WS_OVERLAPPEDWINDOW, false, WS_EX_APPWINDOW);
 
     int32 clientWidth  = (contentSize.right - contentSize.left);
     int32 clientHeight = (contentSize.bottom - contentSize.top);
 
-    //윈도우 생성
+    // 윈도우 생성
     _hWnd = CreateWindowExW
     (
         WS_EX_APPWINDOW,
@@ -46,9 +47,9 @@ void Win32Manager::SetupWindow()
         nullptr
     );
 
-    if (_hWnd == nullptr) //윈도우 생성 실패시 메시지 박스를 출력
+    if (_hWnd == nullptr) // 윈도우 생성 실패시 메시지 박스를 출력
     {
-        MessageBoxW(nullptr, L"Window Creation Failed!", L"FATAL ERROR", MB_ICONERROR);
+        ShowError(L"Failed to create window");
         std::exit(-1);
     }
 
@@ -75,7 +76,7 @@ void Win32Manager::Init
     _width     = width;
     _height    = height;
 
-    //COM객체를 멀티 쓰레드 환경으로 초기화 합니다.
+    // COM객체를 멀티 쓰레드 환경으로 초기화 합니다.
     CoInitializeEx(nullptr, COINITBASE_MULTITHREADED | COINIT_DISABLE_OLE1DDE);
     SetupWindow();
 

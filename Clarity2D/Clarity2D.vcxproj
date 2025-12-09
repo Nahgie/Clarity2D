@@ -105,6 +105,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Messenger\messenger.ixx" />
     <ClCompile Include="Core\PCH\c2d_dx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -114,18 +115,21 @@
     <ClCompile Include="Engine\Graphics\graphics.cpp" />
     <ClCompile Include="Engine\Graphics\graphics.ixx" />
     <ClCompile Include="Engine\Input\input.ixx" />
+    <ClCompile Include="Engine\Scene\scene.cpp" />
     <ClCompile Include="Engine\Scene\scene.ixx" />
     <ClCompile Include="Core\Singleton\singleton.ixx" />
     <ClCompile Include="Core\Types\types.ixx" />
     <ClCompile Include="Engine\Win32\win32.cpp" />
     <ClCompile Include="Engine\Win32\win32.ixx" />
     <ClCompile Include="Launch\options.ixx" />
+    <ClCompile Include="Sources\DefaultScene.ixx" />
     <ClCompile Include="System\Component\Input\input_component.ixx" />
     <ClCompile Include="System\GameObject\game_object.ixx" />
     <ClCompile Include="System\SceneObject\scene_object.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\PCH\c2d_dx.h" />
+    <ClInclude Include="Core\PCH\c2d_macros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

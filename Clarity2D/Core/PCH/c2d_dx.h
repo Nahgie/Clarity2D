@@ -2,7 +2,8 @@
 /*
 * 레거시 형태의 라이브러리(헤더)를 관리합니다.
 * 라이브러리의 종속성을 띠는 매크로는 작성할 수 있지만
-* 관련 없는 임의의 매크로 작성은 금지합니다.
+* PCH에 관련 없는 임의의 매크로 작성은 금지합니다.
+* [엔진 매크로는 c2d_macros.h에서 작성]
 * 
 * 작성일 : 25.12.07
 */
@@ -58,3 +59,6 @@
 // DirectX Misc Utility
 #include "ScreenGrab.h"
 #include "SimpleMath.h"
+
+// Clarity2D Macros
+#include "c2d_macros.h"
