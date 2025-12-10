@@ -7,7 +7,7 @@ import c2d.engine.win32;
 
 export namespace c2d
 {
-    void ShowError
+    void ErrorMsg
     (
         const c2wstring& msg,
         const c2wstring& title = L"Clarity2D Fatal Error",
@@ -23,7 +23,7 @@ export namespace c2d
         );
     }
 
-    void ShowWarning
+    void WarningMsg
     (
         const c2wstring& msg,
         const c2wstring& title = L"Clarity2D Warning",
@@ -39,7 +39,7 @@ export namespace c2d
         );
     }
 
-    void ShowInformation
+    void InformationMsg
     (
         const c2wstring& msg,
         const c2wstring& title = L"Clarity2D Information",

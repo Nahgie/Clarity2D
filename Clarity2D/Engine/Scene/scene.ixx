@@ -46,7 +46,7 @@ export namespace c2d
 
         if (!inserted)
         {
-            ShowError(L"Failed to add scene");
+            ShowError("Failed to add scene");
         }
         return static_cast<T*>(it->second.get());
     }

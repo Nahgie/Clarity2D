@@ -18,7 +18,7 @@ void SceneManager::LoadScene(const c2wstring& name)
 
     if (it == _scenes.end())
     {
-        ShowError(L"Failed to load scene");
+        ShowError("Failed to load scene");
         return;
     }
 
@@ -41,7 +41,7 @@ void SceneManager::DeleteScene(const c2wstring& name)
 
     if (!deleteFlag)
     {
-        ShowError(L"Failed to delete scene");
+        ShowError("Failed to delete scene");
         return;
     }
 

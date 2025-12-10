@@ -69,6 +69,18 @@
     <ClCompile Include="Sources\DefaultScene.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Screen\screen.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Screen\screen.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Path\path.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Path\path.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\PCH\c2d_dx.h">

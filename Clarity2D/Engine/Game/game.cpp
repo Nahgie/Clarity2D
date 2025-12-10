@@ -6,6 +6,8 @@ import c2d.engine.graphics;
 import c2d.engine.input;
 import c2d.engine.win32;
 import c2d.engine.scene;
+import c2d.engine.screen;
+import c2d.engine.path;
 
 using namespace c2d;
 
@@ -45,6 +47,12 @@ void GameManager::Init()
     Gfx()->Init();
     Input()->Init(Win32()->GetWindowHandle());
     Scene()->Init();
+    Screen()->SetTargetSize(
+        {
+            static_cast<float32>(Win32()->GetWidth()),
+            static_cast<float32>(Win32()->GetHeight())
+        }
+    );
 
     // 게임스레드 실행
     _gameUpdateThread  = c2thread(&GameManager::GameUpdate, this);

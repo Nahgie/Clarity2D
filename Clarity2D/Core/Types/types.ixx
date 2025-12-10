@@ -89,7 +89,7 @@ export namespace c2d
 
     export namespace rendering
     {
-        enum class eRenderLimitMode : UINT8     //렌더링 싱크 조절법을 정의
+        enum class eRenderLimitMode : uint8     //렌더링 싱크 조절법을 정의
         {
             UNLIMIT       = (0x00),
             V_SYNC        = (0x01),
@@ -99,6 +99,23 @@ export namespace c2d
         };
     }
 
+    export namespace path_access_level
+    {
+        using c2path = std::filesystem::path;
+
+        enum class ePathAccessLevel : uint8
+        {
+            EXE = (0x00),
+            UP1 = (0x01),
+            UP2 = (0x02),
+            UP3 = (0x03),
+            UP4 = (0x04),
+            UP5 = (0x05),
+            UP6 = (0x06),
+            UP7 = (0x07),
+            UP8 = (0x08),
+        };
+    }
 /*    export namespace windows
     {
         using AppHandle = HINSTANCE;

@@ -49,7 +49,7 @@ void Win32Manager::SetupWindow()
 
     if (_hWnd == nullptr) // 윈도우 생성 실패시 메시지 박스를 출력
     {
-        ShowError(L"Failed to create window");
+        ShowError("Failed to create window");
         std::exit(-1);
     }
 
