@@ -27,6 +27,9 @@ export namespace c2d
         com_ptr<IMFDXGIDeviceManager>   _dxgiManager     = nullptr;
         com_ptr<ID3D11Multithread>      _multithread     = nullptr;
 
+        c2unique_ptr<SpriteBatch>       _spriteBatch     = nullptr;
+        c2unique_ptr<CommonStates>      _commonStates    = nullptr;
+
         //뷰포트 정의
         uint32                          _dxgiResetToken = 0;
         D3D11_VIEWPORT                  _viewport;
@@ -43,7 +46,7 @@ export namespace c2d
     public:
         void Init();
         void SetRenderLimitMode(const eRenderLimitMode state) noexcept { _renderState = state; }
-        void RenderBegin();
+        void RenderBegin(SpriteSortMode mode);
         void RenderEnd();
 
         const com_ptr<ID3D11Device5>&         GetDevice()        const noexcept { return _dev; }
@@ -51,6 +54,7 @@ export namespace c2d
         const com_ptr<IDXGISwapChain4>&       GetSWChain()       const noexcept { return _swChain; }
         const com_ptr<IMFDXGIDeviceManager>&  GetDXGI()          const noexcept { return _dxgiManager; }
         const com_ptr<ID3D11Multithread>&     GetDXMultithread() const noexcept { return _multithread; }
+        SpriteBatch*                          GetSpriteBatch()   const noexcept { return _spriteBatch.get(); }
     };
 }
 

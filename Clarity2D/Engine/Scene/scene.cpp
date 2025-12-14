@@ -10,6 +10,7 @@ using namespace c2d;
 void SceneManager::Init()
 {
     _sceneIt = _scenes.end();
+    Scene()->LoadScene(L"DefaultScene");
 }
 
 void SceneManager::LoadScene(const c2wstring& name)

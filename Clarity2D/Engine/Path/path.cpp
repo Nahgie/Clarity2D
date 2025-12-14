@@ -7,45 +7,68 @@ import c2d.core.types;
 using namespace c2d;
 using namespace c2d::path_access_level;
 
-void PathManager::ApplyAccessLevel()
+c2path PathManager::GetExeDir()
 {
-    auto base = std::filesystem::current_path();
-    const auto level = static_cast<uint8>(_accessLevel);
+    std::array<wchar_t, MAX_PATH> buf{};
+    GetModuleFileNameW(nullptr, buf.data(), MAX_PATH);
+    return c2path(buf.data()).parent_path();
+}
 
-    for (uint8 access = 0; access < level && base.has_parent_path(); ++access)
+c2path PathManager::FindRootByAssets(const c2path& exeDir, c2wstring_view assetsName, uint8 maxUp)
+{
+    c2path cur = exeDir;
+
+    for (uint8 i = 0; i <= maxUp; ++i)
     {
-        base = base.parent_path();
-    }
-    _basePath = base.lexically_normal();
-}
+        const auto marker = (cur / assetsName);
+        std::error_code ec{};
+        if (std::filesystem::exists(marker, ec) && std::filesystem::is_directory(marker, ec))
+        {
+            return cur.lexically_normal();
+        }
 
-void PathManager::SetAccessLevel(ePathAccessLevel lv)
-{
-    _accessLevel = lv;
-    ApplyAccessLevel();
-}
+        if (!cur.has_parent_path())
+        {
+            break;
+        }
 
-ePathAccessLevel PathManager::GetAccessLevel() const noexcept
-{
-    return _accessLevel;
-}
-
-void PathManager::ResetBasePath(const c2path& newpath)
-{
-    _basePath = newpath.lexically_normal();
-}
-
-const c2path& PathManager::GetBasePath() const noexcept
-{
-    return _basePath;
-}
-
-c2path PathManager::MakePath(const c2path& relative) const
-{
-    if (relative.is_absolute())
-    {
-        return relative.lexically_normal();
+        cur = cur.parent_path();
     }
 
-    return (_basePath / relative).lexically_normal();
+    return exeDir.lexically_normal();
+}
+
+void PathManager::Init(c2wstring_view assetsFolderName, uint8 maxUp) noexcept
+{
+    _exeDir = GetExeDir().lexically_normal();
+    _root = FindRootByAssets(_exeDir, assetsFolderName, maxUp);
+    _inited = true;
+}
+
+c2path PathManager::Abs(const c2path& path) noexcept
+{
+    if (!_inited)
+    {
+        Init();
+    }
+
+    if (path.is_absolute())
+    {
+        return path.lexically_normal();
+    }
+    return (_root / path).lexically_normal();
+}
+
+c2path PathManager::Assets(const c2path& rel) noexcept
+{
+    if (!_inited)
+    {
+        Init();
+    }
+
+    if (!rel.empty() && (*rel.begin() == L"Assets"))
+    {
+        return (_root / rel).lexically_normal();
+    }
+    return (_root / L"Assets" / rel).lexically_normal();
 }

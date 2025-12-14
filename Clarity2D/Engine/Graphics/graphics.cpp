@@ -3,6 +3,7 @@
 module c2d.engine.graphics;
 
 import c2d.engine.win32;
+import c2d.engine.texture;
 
 using namespace c2d;
 
@@ -114,19 +115,26 @@ void GraphicsManager::Init()
     CreateRTV();
     SetViewport();
     SetRenderLimitMode(eRenderLimitMode::UNLIMIT);
+
+    _spriteBatch  = std::make_unique<SpriteBatch>(_devContext.Get());
+    _commonStates = std::make_unique<CommonStates>(_dev.Get());
 }
 
-void GraphicsManager::RenderBegin()
+void GraphicsManager::RenderBegin(SpriteSortMode mode)
 {
     ID3D11RenderTargetView* const rtv = _rtv.Get(); // ID3D11RenderTargetView1 업캐스트
 
     _devContext->OMSetRenderTargets(1, &rtv, nullptr);
     _devContext->ClearRenderTargetView(rtv, _defColor);
     _devContext->RSSetViewports(1, &_viewport);
+
+    _spriteBatch->Begin(mode, _commonStates->NonPremultiplied());
 }
 
 void GraphicsManager::RenderEnd()
 {
+    _spriteBatch->End();
+
     HRESULT hr = _swChain->Present(static_cast<uint8>(_renderState), 0);
     assert(SUCCEEDED(hr));
 }

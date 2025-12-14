@@ -13,6 +13,15 @@ export namespace c2d
     template<typename T>
     using com_ptr = Microsoft::WRL::ComPtr<T>;
 
+    template<typename T>
+    using c2unique_ptr = std::unique_ptr<T>;
+
+    template<typename T>
+    using c2shared_ptr = std::shared_ptr<T>;
+
+    template<typename T>
+    using c2weak_ptr = std::weak_ptr<T>;
+
     // atomic bool
     using abool = std::atomic<bool>;
 
@@ -61,7 +70,10 @@ export namespace c2d
     using c2wstring_view = std::wstring_view;
 
     // C++20 joining thread [ C++11 thread는 사용하지 말 것 ]
-    using c2thread = std::jthread;
+    using c2thread     = std::jthread;
+
+    using c2clock      = std::chrono::high_resolution_clock;
+    using c2time_point = c2clock::time_point;
 
     export namespace engine_start_options
     {
@@ -85,10 +97,45 @@ export namespace c2d
         inline constexpr double epsilon = 0.000001;
         inline constexpr double deg2rad = (pi / 180.0);
         inline constexpr double rad2deg = (180.0 / pi);
+
+        struct Transform2D
+        {
+            vec2    position{ 0.f, 0.f };  // 월드 좌표
+            vec2    scale   { 1.f, 1.f };  // 스케일
+            float32 rotation{ 0.f };       // 라디안 기준
+            float32 depth   { 0.f };       // SpriteBatch depth
+
+            void SetPosition(const float32 x, const float32 y) noexcept
+            {
+                position.x = x;
+                position.y = y;
+            }
+
+            void SetScale(const float32 x, float32 y) noexcept
+            {
+                scale.x = x;
+                scale.y = y;
+            }
+
+            // 행렬 변환
+            matrix ToMatrix() const noexcept
+            {
+                using DirectX::SimpleMath::Matrix;
+
+                const auto S = Matrix::CreateScale(scale.x, scale.y, 1.f);
+                const auto R = Matrix::CreateRotationZ(rotation);
+                const auto T = Matrix::CreateTranslation(position.x, position.y, 0.f);
+
+                return S * R * T;
+            }
+        };
     }
 
     export namespace rendering
     {
+        using namespace DirectX;
+        using namespace c2d::math;
+
         enum class eRenderLimitMode : uint8     //렌더링 싱크 조절법을 정의
         {
             UNLIMIT       = (0x00),
@@ -97,6 +144,52 @@ export namespace c2d
             DOUBLE_BUFFER = (0x03),
             TRIPLE_BUFFER = (0x04)
         };
+
+        enum class eRenderFlip : uint8
+        {
+            NONE       = (0x00),
+            HORIZONTAL = (0x01),
+            VERTICAL   = (0x02),
+            BOTH       = HORIZONTAL | VERTICAL
+        };
+
+        enum class eSortMode : uint8
+        {
+            STACK = (0x00),
+            NO_WAIT = (0x01),
+            TEX_QUEUE = (0x02),
+            FORWARD = (0x03),
+            BACKWARD = (0x04)
+        };
+
+        inline SpriteEffects ToSpriteEffects(eRenderFlip flip) noexcept
+        {
+            using SE = DirectX::SpriteEffects;
+
+            switch (flip)
+            {
+                case eRenderFlip::HORIZONTAL:
+                    return SE::SpriteEffects_FlipHorizontally;
+
+                case eRenderFlip::VERTICAL:
+                    return SE::SpriteEffects_FlipVertically;
+
+                case eRenderFlip::BOTH:
+                    return SE(SE::SpriteEffects_FlipHorizontally | SE::SpriteEffects_FlipVertically);
+
+                default:
+                    return SE::SpriteEffects_None;
+            }
+        }
+
+        struct Texture
+        {
+            com_ptr<ID3D11ShaderResourceView> srv;
+            vec2                              size{ 0.f, 0.f };
+            bool IsValid() const noexcept { return srv != nullptr; }
+        };
+
+        using c2texture_ptr = std::shared_ptr<Texture>;
     }
 
     export namespace path_access_level

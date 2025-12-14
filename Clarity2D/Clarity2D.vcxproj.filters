@@ -51,9 +51,6 @@
     <ClCompile Include="System\GameObject\game_object.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="System\Component\Input\input_component.ixx">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Input\input.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -79,6 +76,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Path\path.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Component\Timer\timer.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Component\Painter\painter.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\TestSprite.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Texture\texture.ixx">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

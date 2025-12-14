@@ -30,7 +30,7 @@ void GameManager::GameUpdate()
         Scene()->Update();
 
         // 렌더링
-        Gfx()->RenderBegin();
+        Gfx()->RenderBegin(SpriteSortMode_Texture);
         Scene()->Draw();
         Gfx()->RenderEnd();
 

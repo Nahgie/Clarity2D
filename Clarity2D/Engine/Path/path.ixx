@@ -12,22 +12,26 @@ export namespace c2d
     class PathManager final : public Singleton<PathManager>
     {
     private:
-        c2path _basePath;
-        ePathAccessLevel _accessLevel;
+        c2path _exeDir{};
+        c2path _root  {};
+        bool   _inited{ false };
 
     private:
-        void ApplyAccessLevel();
+        c2path GetExeDir();
+        c2path FindRootByAssets(const c2path& exeDir, std::wstring_view assetsName, uint8 maxUp);
 
     public:
-        PathManager(ePathAccessLevel lv = ePathAccessLevel::UP2) { _accessLevel = lv; }
+        // 한 번만 호출해도 되고, 안 불러도 Abs()에서 lazy init 되게 할 수 있음(아래 구현 참고)
+        void Init(std::wstring_view assetsFolderName = L"Assets", uint8 maxUp = 8) noexcept;
 
-        void SetAccessLevel(ePathAccessLevel lv);
-        ePathAccessLevel GetAccessLevel() const noexcept;
+        // 핵심: 상대경로를 절대경로로
+        c2path Abs(const c2path& path) noexcept;
 
-        void ResetBasePath(const c2path& newpath);
-        const c2path& GetBasePath() const noexcept;
+        // 편의: Assets 기준
+        c2path Assets(const c2path& rel) noexcept;
 
-        c2path MakePath(const c2path& relative) const;
+        const c2path& ExeDir() const noexcept { return _exeDir; }
+        const c2path& Root()   const noexcept { return _root; }
     };
 }
 

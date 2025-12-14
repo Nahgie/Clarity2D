@@ -20,7 +20,10 @@
     C2D_WIDE(STR)
 
 #define PATH(STR) \
-    Path()->MakePath(C2D_WIDE(STR))
+    Path()->Abs(C2D_WIDE(STR))
+
+#define ASSETS(STR) \
+    Path()->Assets(C2D_WIDE(STR))
 
 // 메시지(Win32 MessageBoxW) 단발성 처리용 매크로
 #define ShowError(msg) \
@@ -35,3 +38,7 @@
 // 씬(SceneObject) 등록 매크로
 #define C2D_REGISTER_SCENE(T, NAME) \
     inline static ::c2d::SceneRegister<T> _sceneContext{ C2D_WIDE(NAME) };
+
+// XY좌표 코디네이션용 매크로
+#define XY(X, Y) \
+    c2d::math::vec2{ static_cast<float32>(X), static_cast<float32>(Y) }

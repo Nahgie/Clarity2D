@@ -13,7 +13,7 @@ export namespace c2d
         std::vector<std::shared_ptr<GameObject>> _objects;
 
     protected:
-        void AddObject(const std::shared_ptr<GameObject>& obj) { _objects.emplace_back(obj); }
+        void AddObject(const std::shared_ptr<GameObject>& obj) { obj->Create(); _objects.emplace_back(obj); }
         void ClearObjects() noexcept                           { _objects.clear(); }
 
     public:
